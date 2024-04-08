@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import deployedContracts from "../contracts/deployedContracts";
 import type { NextPage } from "next";
 import { useAccount, useBalance, useContractRead, useContractWrite, useNetwork, useSignMessage } from "wagmi";
+import myTokenContract from '../../hardhat/artifacts/contracts/MyToken.sol/MyToken.json'
+import deployedContracts from "../contracts/deployedContracts";
+import { IntegerInput } from "~~/components/scaffold-eth";
 
 const Home: NextPage = () => {
   return (
@@ -46,6 +48,7 @@ function WalletInfo() {
         <p>Your account address is {address}</p>
         <p>Connected to the network {chain?.name}</p>
         <Delegate></Delegate>
+        <CastVote></CastVote>
         <WalletAction></WalletAction>
         <WalletBalance address={address as `0x${string}`}></WalletBalance>
         <TokenInfo address={address as `0x${string}`}></TokenInfo>
@@ -273,4 +276,56 @@ function RandomWord() {
   );
 }
 
+
+function CastVote() {
+  const [proposalIndex, setProposalIndex] = useState<string>("");
+  const [amount, setAmount] = useState<string>("");
+
+  const { data, isLoading, error, isError, isSuccess, write  } = useContractWrite({
+    address: deployedContracts[11155111].TokenizedBallot.address,
+    abi: deployedContracts[11155111].TokenizedBallot.abi,
+    functionName: 'vote',
+    args: [proposalIndex as any, amount as any],
+  })
+
+  let statusMessage = "";
+  if (isLoading) statusMessage = "Loading";
+  else if (isError) statusMessage = `${error?.message}`;
+  else if (isSuccess) statusMessage = `${JSON.stringify(data)}`;
+
+  return (
+    <div className="flex flex-col gap-2 items-stretch">
+      <span className="text-sm font-semibold">Proposal index</span>
+        {}
+      <IntegerInput
+        name="proposalIndexInput"
+        placeholder="Proposal Index"
+        value={proposalIndex}
+        onChange={newVal => setProposalIndex(newVal.toString())}
+        disabled={isLoading} 
+        disableMultiplyBy1e18 
+      />
+      <span className="text-sm font-semibold">Tokens Vote</span>
+     {}
+     <IntegerInput
+        name="voteAmountInput"
+        placeholder="Vote"
+        value={amount}
+        onChange={newVal => setAmount(newVal.toString())}  // Update state when input changes
+        disabled={isLoading}  // Disable input while transaction is in process
+        disableMultiplyBy1e18  // Disable automatic multiplication by 10^18
+      />
+        {}
+      <button
+        disabled={isLoading} 
+        onClick={() => write()}
+        className="btn self-center"
+      >
+        Vote
+      </button>
+      <span className="text-wrap">{statusMessage}</span>
+    </div>
+
+  )
+}
 export default Home;
