@@ -3,9 +3,8 @@
 import { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import { useAccount, useBalance, useContractRead, useContractWrite, useNetwork, useSignMessage } from "wagmi";
-import myTokenContract from '../../hardhat/artifacts/contracts/MyToken.sol/MyToken.json'
 import deployedContracts from "../contracts/deployedContracts";
-import { IntegerInput } from "~~/components/scaffold-eth";
+import { AddressInput, IntegerInput } from "~~/components/scaffold-eth";
 
 const Home: NextPage = () => {
   return (
@@ -34,7 +33,6 @@ function PageBody() {
     <>
       <p className="text-center text-lg">Here we are!</p>
       <WalletInfo></WalletInfo>
-      <RandomWord></RandomWord>
     </>
   );
 }
@@ -49,6 +47,7 @@ function WalletInfo() {
         <p>Connected to the network {chain?.name}</p>
         <Delegate></Delegate>
         <CastVote></CastVote>
+        <MintTokens></MintTokens>
         <WalletAction></WalletAction>
         <WalletBalance address={address as `0x${string}`}></WalletBalance>
         <TokenInfo address={address as `0x${string}`}></TokenInfo>
@@ -147,7 +146,6 @@ function Delegate() {
           Delegate
         </button>
         {isSuccess && <div>Transaction hash: {data?.hash}</div>}
-
         {isError && <div>Error delegating your vote</div>}
       </div>
     </div>
@@ -247,85 +245,133 @@ function TokenBalance(params: { address: `0x${string}` }) {
   return <div>Balance: {balance}</div>;
 }
 
-function RandomWord() {
-  const [data, setData] = useState<any>(null);
-  const [isLoading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch("https://randomuser.me/api/")
-      .then(res => res.json())
-      .then(data => {
-        setData(data.results[0]);
-        setLoading(false);
-      });
-  }, []);
-
-  if (isLoading) return <p>Loading...</p>;
-  if (!data) return <p>No profile data</p>;
-
-  return (
-    <div className="card w-96 bg-primary text-primary-content mt-4">
-      <div className="card-body">
-        <h2 className="card-title">Testing useState and useEffect from React library</h2>
-        <h1>
-          Name: {data.name.title} {data.name.first} {data.name.last}
-        </h1>
-        <p>Email: {data.email}</p>
-      </div>
-    </div>
-  );
-}
-
 
 function CastVote() {
   const [proposalIndex, setProposalIndex] = useState<string>("");
   const [amount, setAmount] = useState<string>("");
-
-  const { data, isLoading, error, isError, isSuccess, write  } = useContractWrite({
+  const { data, isLoading, isError, isSuccess, write  } = useContractWrite({
     address: deployedContracts[11155111].TokenizedBallot.address,
     abi: deployedContracts[11155111].TokenizedBallot.abi,
     functionName: 'vote',
     args: [proposalIndex as any, amount as any],
   })
 
-  let statusMessage = "";
-  if (isLoading) statusMessage = "Loading";
-  else if (isError) statusMessage = `${error?.message}`;
-  else if (isSuccess) statusMessage = `${JSON.stringify(data)}`;
+  return (
+    <div className="card w-96 bg-primary text-primary-content mt-4">
+      <div className="card-body">
+        <h2 className="card-title">Votes</h2>
+        <div className="form-control w-full max-w-xs my-4">
+          <label className="label">
+            <span className="label-text">Proposal Index:</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Proposal Index"
+            className="input input-bordered w-full max-w-xs"
+            value={proposalIndex}
+            onChange={e => setProposalIndex(e.target.value)}
+          />
+          <label className="label">
+            <span className="label-text">Amount:</span>
+          </label>
+
+          <input
+            type="text"
+            placeholder="Amount of tokens to vote with"
+            className="input input-bordered w-full max-w-xs"
+            value={amount}
+            onChange={e => setAmount(e.target.value)}
+          />
+        </div>
+        <button
+          className="btn btn-active btn-neutral"
+          disabled={isLoading}
+          onClick={() =>
+            write({
+              args: [proposalIndex as any, amount as any],
+            })
+          }
+        >
+          Cast Vote
+        </button>
+        {isSuccess && <div>Transaction hash: {data?.hash}</div>}
+        {isError && <div>Error casting your vote</div>}
+      </div>
+    </div>
+  )
+}
+
+function MintTokens () {
+  const [isLoading, setIsLoading] = useState<boolean>(false)  
+  const [toAddress, setAddress] = useState<string>("");
+  const [amount, setAmount] = useState<string>("");
+  const [status, setStatus] = useState<string>("");
+
+  const mint = async () => {
+    setIsLoading(true);
+    setStatus('Mining tokens')
+    try {
+      const payload = { address: toAddress, amount }
+      console.log(payload)
+      const response = await fetch('http://localhost:3001/token/mint', {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      })
+      console.log(response)
+      const data = await response.json()
+      console.log(data.statusCode)
+      if (data.statusCode === 201) {
+        setStatus('Tokens minted successfully')
+      } else {
+        setStatus('Error minting tokens')
+      }
+    } catch (error) {
+      setStatus('Error minting tokens')
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   return (
-    <div className="flex flex-col gap-2 items-stretch">
-      <span className="text-sm font-semibold">Proposal index</span>
-        {}
-      <IntegerInput
-        name="proposalIndexInput"
-        placeholder="Proposal Index"
-        value={proposalIndex}
-        onChange={newVal => setProposalIndex(newVal.toString())}
-        disabled={isLoading} 
-        disableMultiplyBy1e18 
-      />
-      <span className="text-sm font-semibold">Tokens Vote</span>
-     {}
-     <IntegerInput
-        name="voteAmountInput"
-        placeholder="Vote"
-        value={amount}
-        onChange={newVal => setAmount(newVal.toString())}  // Update state when input changes
-        disabled={isLoading}  // Disable input while transaction is in process
-        disableMultiplyBy1e18  // Disable automatic multiplication by 10^18
-      />
-        {}
-      <button
-        disabled={isLoading} 
-        onClick={() => write()}
-        className="btn self-center"
-      >
-        Vote
-      </button>
-      <span className="text-wrap">{statusMessage}</span>
-    </div>
+    <div className="card w-96 bg-primary text-primary-content mt-4">
+    <div className="card-body">
+      <h2 className="card-title">Mint</h2>
+      <div className="form-control w-full max-w-xs my-4">
+        <label className="label">
+          <span className="label-text">Address to mint tokens</span>
+        </label>
+        <AddressInput
+          placeholder="Address to mint tokens to"
+          value={toAddress}
+          onChange={setAddress}
+          disabled={isLoading}
+        />
+        <label className="label">
+          <span className="label-text">Amount to mint:</span>
+        </label>
 
+        <IntegerInput
+          name="Amount to mint"
+          placeholder="Amount of tokens to mint"
+          value={amount}
+          onChange={value => setAmount(value.toString())}
+          disabled={isLoading}
+          disableMultiplyBy1e18
+        />
+      </div>
+      <button
+        className="btn btn-active btn-neutral"
+        disabled={isLoading}
+        onClick={mint}
+      >
+        Mint
+      </button>
+      {status && <div> {status}</div>}
+    </div>
+  </div>
   )
 }
 export default Home;
