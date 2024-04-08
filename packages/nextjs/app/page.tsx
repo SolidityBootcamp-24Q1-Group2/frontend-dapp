@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { hexToString } from "viem";
+import { useState } from "react";
 import type { NextPage } from "next";
 import { useAccount, useBalance, useContractRead, useContractWrite, useNetwork, useSignMessage } from "wagmi";
 import deployedContracts from "../contracts/deployedContracts";
@@ -45,9 +46,10 @@ function WalletInfo() {
       <div>
         <p>Your account address is {address}</p>
         <p>Connected to the network {chain?.name}</p>
+        <WinningProposal></WinningProposal>
+        <MintTokens></MintTokens>
         <Delegate></Delegate>
         <CastVote></CastVote>
-        <MintTokens></MintTokens>
         <WalletAction></WalletAction>
         <WalletBalance address={address as `0x${string}`}></WalletBalance>
         <TokenInfo address={address as `0x${string}`}></TokenInfo>
@@ -301,6 +303,21 @@ function CastVote() {
   )
 }
 
+function WinningProposal() {
+  const { data, isLoading, isError } = useContractRead({
+    address: deployedContracts[11155111].TokenizedBallot.address,
+    abi: deployedContracts[11155111].TokenizedBallot.abi,
+    functionName: 'winnerName',
+  })
+
+  if (isLoading) return <div>Fetching winning proposal…</div>
+  if (isError) return <div>Error fetching winning proposal</div>
+
+  if (data) {
+    console.log(data)
+    return <div>Winning proposal: {hexToString(data)}</div>
+  }
+}
 function MintTokens () {
   const [isLoading, setIsLoading] = useState<boolean>(false)  
   const [toAddress, setAddress] = useState<string>("");
