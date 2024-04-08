@@ -312,7 +312,6 @@ function MintTokens () {
     setStatus('Mining tokens')
     try {
       const payload = { address: toAddress, amount }
-      console.log(payload)
       const response = await fetch('http://localhost:3001/token/mint', {
         method: 'POST',
         headers: {
@@ -320,9 +319,7 @@ function MintTokens () {
         },
         body: JSON.stringify(payload),
       })
-      console.log(response)
       const data = await response.json()
-      console.log(data.statusCode)
       if (data.statusCode === 201) {
         setStatus('Tokens minted successfully')
       } else {
