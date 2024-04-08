@@ -1,0 +1,273 @@
+{
+  "address": "0x998B4637Cc3F29d4f7E983bC02615a1547E05199",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32[]",
+          "name": "_proposalNames",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "address",
+          "name": "_tokenContract",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_targetBlockNumber",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "proposals",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "name",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "voteCount",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "targetBlockNumber",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "tokenContract",
+      "outputs": [
+        {
+          "internalType": "contract IMyToken",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "proposal",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "vote",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "votePowerSpent",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "winnerName",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "winnerName_",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "winningProposal",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "winningProposal_",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x63deadba46abbb7ceca362840f4250527951e77834919c8adb803d6172004f02",
+  "receipt": {
+    "to": null,
+    "from": "0x99A269c5Fa8BF65e944ca4C3B76dCe703d7a9546",
+    "contractAddress": "0x998B4637Cc3F29d4f7E983bC02615a1547E05199",
+    "transactionIndex": 45,
+    "gasUsed": "445824",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x57698440c344387520b73bf1c8e6f2deacb49d967ada72fb0799a6d4a46e39af",
+    "transactionHash": "0x63deadba46abbb7ceca362840f4250527951e77834919c8adb803d6172004f02",
+    "logs": [],
+    "blockNumber": 5651620,
+    "cumulativeGasUsed": "7890118",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    [
+      "0x3000000000000000000000000000000000000000000000000000000000000000",
+      "0x3100000000000000000000000000000000000000000000000000000000000000",
+      "0x3200000000000000000000000000000000000000000000000000000000000000"
+    ],
+    "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
+    "5651619"
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "b5d8cc843f01988f3f87b6e81f1c9fab",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.24+commit.e11b9ed9\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"bytes32[]\",\"name\":\"_proposalNames\",\"type\":\"bytes32[]\"},{\"internalType\":\"address\",\"name\":\"_tokenContract\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_targetBlockNumber\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"proposals\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"name\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"voteCount\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"targetBlockNumber\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"tokenContract\",\"outputs\":[{\"internalType\":\"contract IMyToken\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"proposal\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"vote\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"votePowerSpent\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"winnerName\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"winnerName_\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"winningProposal\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"winningProposal_\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/TokenizedBallot.sol\":\"TokenizedBallot\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/TokenizedBallot.sol\":{\"content\":\"// SPDX-License-Identifier: GPL-3.0\\r\\npragma solidity >=0.7.0 <0.9.0;\\r\\n\\r\\ninterface IMyToken {\\r\\n    function getPastVotes(address, uint256) external view returns (uint256);\\r\\n}\\r\\n\\r\\ncontract TokenizedBallot {\\r\\n    struct Proposal {\\r\\n        bytes32 name;\\r\\n        uint voteCount;\\r\\n    }\\r\\n\\r\\n    IMyToken public tokenContract;\\r\\n    Proposal[] public proposals;\\r\\n    uint256 public targetBlockNumber;\\r\\n    mapping(address => uint256) public votePowerSpent;\\r\\n\\r\\n    constructor(\\r\\n        bytes32[] memory _proposalNames,\\r\\n        address _tokenContract,\\r\\n        uint256 _targetBlockNumber\\r\\n    ) {\\r\\n        tokenContract = IMyToken(_tokenContract);\\r\\n        targetBlockNumber = _targetBlockNumber;\\r\\n        // TODO: Validate if targetBlockNumber is in the past\\r\\n        for (uint i = 0; i < _proposalNames.length; i++) {\\r\\n            proposals.push(Proposal({name: _proposalNames[i], voteCount: 0}));\\r\\n        }\\r\\n    }\\r\\n\\r\\n    function vote(uint256 proposal, uint256 amount) external {\\r\\n        require(\\r\\n            tokenContract.getPastVotes(msg.sender, targetBlockNumber) -\\r\\n                votePowerSpent[msg.sender] >=\\r\\n                amount,\\r\\n            \\\"Not enough voting power\\\"\\r\\n        );\\r\\n        votePowerSpent[msg.sender] += amount;\\r\\n        proposals[proposal].voteCount += amount;\\r\\n    }\\r\\n\\r\\n    function winningProposal() public view returns (uint winningProposal_) {\\r\\n        uint winningVoteCount = 0;\\r\\n        for (uint p = 0; p < proposals.length; p++) {\\r\\n            if (proposals[p].voteCount > winningVoteCount) {\\r\\n                winningVoteCount = proposals[p].voteCount;\\r\\n                winningProposal_ = p;\\r\\n            }\\r\\n        }\\r\\n    }\\r\\n\\r\\n    function winnerName() external view returns (bytes32 winnerName_) {\\r\\n        winnerName_ = proposals[winningProposal()].name;\\r\\n    }\\r\\n}\\r\\n\",\"keccak256\":\"0xcb7d8bb3ff6a40a739e1689b669e4e9b5eb8dd19693d99dc56bd2d490ca4fe5d\",\"license\":\"GPL-3.0\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5060405161065538038061065583398101604081905261002f916100f3565b600080546001600160a01b0319166001600160a01b03841617815560028290555b83518110156100b85760016040518060400160405280868481518110610078576100786101cb565b6020908102919091018101518252600091810182905283546001818101865594835291819020835160029093020191825591909101519082015501610050565b505050506101e1565b634e487b7160e01b600052604160045260246000fd5b80516001600160a01b03811681146100ee57600080fd5b919050565b60008060006060848603121561010857600080fd5b83516001600160401b038082111561011f57600080fd5b818601915086601f83011261013357600080fd5b8151602082821115610147576101476100c1565b8160051b604051601f19603f8301168101818110868211171561016c5761016c6100c1565b60405292835281830193508481018201928a84111561018a57600080fd5b948201945b838610156101a85785518552948201949382019361018f565b97506101b790508882016100d7565b955050505050604084015190509250925092565b634e487b7160e01b600052603260045260246000fd5b610465806101f06000396000f3fe608060405234801561001057600080fd5b506004361061007d5760003560e01c8063609ff1bd1161005b578063609ff1bd146100f15780639e90d0d9146100f9578063b384abef14610119578063e2ba53f01461012e57600080fd5b8063013cf08b146100825780632a8cd29e146100af57806355a373d6146100c6575b600080fd5b610095610090366004610353565b610136565b604080519283526020830191909152015b60405180910390f35b6100b860025481565b6040519081526020016100a6565b6000546100d9906001600160a01b031681565b6040516001600160a01b0390911681526020016100a6565b6100b8610164565b6100b861010736600461036c565b60036020526000908152604090205481565b61012c61012736600461039c565b6101d7565b005b6100b8610320565b6001818154811061014657600080fd5b60009182526020909120600290910201805460019091015490915082565b600080805b6001548110156101d2578160018281548110610187576101876103be565b90600052602060002090600202016001015411156101ca57600181815481106101b2576101b26103be565b90600052602060002090600202016001015491508092505b600101610169565b505090565b336000818152600360205260408082205491546002549151630748d63560e31b81526004810194909452602484019190915283926001600160a01b0390911690633a46b1a890604401602060405180830381865afa15801561023d573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061026191906103d4565b61026b9190610403565b10156102bd5760405162461bcd60e51b815260206004820152601760248201527f4e6f7420656e6f75676820766f74696e6720706f776572000000000000000000604482015260640160405180910390fd5b33600090815260036020526040812080548392906102dc90849061041c565b9250508190555080600183815481106102f7576102f76103be565b90600052602060002090600202016001016000828254610317919061041c565b90915550505050565b6000600161032c610164565b8154811061033c5761033c6103be565b906000526020600020906002020160000154905090565b60006020828403121561036557600080fd5b5035919050565b60006020828403121561037e57600080fd5b81356001600160a01b038116811461039557600080fd5b9392505050565b600080604083850312156103af57600080fd5b50508035926020909101359150565b634e487b7160e01b600052603260045260246000fd5b6000602082840312156103e657600080fd5b5051919050565b634e487b7160e01b600052601160045260246000fd5b81810381811115610416576104166103ed565b92915050565b80820180821115610416576104166103ed56fea2646970667358221220f55a206a3da50bee9bd4e2201d35b3ea585bf0a10d39cd0b4f5940a03e6e37ed64736f6c63430008180033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061007d5760003560e01c8063609ff1bd1161005b578063609ff1bd146100f15780639e90d0d9146100f9578063b384abef14610119578063e2ba53f01461012e57600080fd5b8063013cf08b146100825780632a8cd29e146100af57806355a373d6146100c6575b600080fd5b610095610090366004610353565b610136565b604080519283526020830191909152015b60405180910390f35b6100b860025481565b6040519081526020016100a6565b6000546100d9906001600160a01b031681565b6040516001600160a01b0390911681526020016100a6565b6100b8610164565b6100b861010736600461036c565b60036020526000908152604090205481565b61012c61012736600461039c565b6101d7565b005b6100b8610320565b6001818154811061014657600080fd5b60009182526020909120600290910201805460019091015490915082565b600080805b6001548110156101d2578160018281548110610187576101876103be565b90600052602060002090600202016001015411156101ca57600181815481106101b2576101b26103be565b90600052602060002090600202016001015491508092505b600101610169565b505090565b336000818152600360205260408082205491546002549151630748d63560e31b81526004810194909452602484019190915283926001600160a01b0390911690633a46b1a890604401602060405180830381865afa15801561023d573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061026191906103d4565b61026b9190610403565b10156102bd5760405162461bcd60e51b815260206004820152601760248201527f4e6f7420656e6f75676820766f74696e6720706f776572000000000000000000604482015260640160405180910390fd5b33600090815260036020526040812080548392906102dc90849061041c565b9250508190555080600183815481106102f7576102f76103be565b90600052602060002090600202016001016000828254610317919061041c565b90915550505050565b6000600161032c610164565b8154811061033c5761033c6103be565b906000526020600020906002020160000154905090565b60006020828403121561036557600080fd5b5035919050565b60006020828403121561037e57600080fd5b81356001600160a01b038116811461039557600080fd5b9392505050565b600080604083850312156103af57600080fd5b50508035926020909101359150565b634e487b7160e01b600052603260045260246000fd5b6000602082840312156103e657600080fd5b5051919050565b634e487b7160e01b600052601160045260246000fd5b81810381811115610416576104166103ed565b92915050565b80820180821115610416576104166103ed56fea2646970667358221220f55a206a3da50bee9bd4e2201d35b3ea585bf0a10d39cd0b4f5940a03e6e37ed64736f6c63430008180033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 8384,
+        "contract": "contracts/TokenizedBallot.sol:TokenizedBallot",
+        "label": "tokenContract",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_contract(IMyToken)8376"
+      },
+      {
+        "astId": 8388,
+        "contract": "contracts/TokenizedBallot.sol:TokenizedBallot",
+        "label": "proposals",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_array(t_struct(Proposal)8381_storage)dyn_storage"
+      },
+      {
+        "astId": 8390,
+        "contract": "contracts/TokenizedBallot.sol:TokenizedBallot",
+        "label": "targetBlockNumber",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 8394,
+        "contract": "contracts/TokenizedBallot.sol:TokenizedBallot",
+        "label": "votePowerSpent",
+        "offset": 0,
+        "slot": "3",
+        "type": "t_mapping(t_address,t_uint256)"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_array(t_struct(Proposal)8381_storage)dyn_storage": {
+        "base": "t_struct(Proposal)8381_storage",
+        "encoding": "dynamic_array",
+        "label": "struct TokenizedBallot.Proposal[]",
+        "numberOfBytes": "32"
+      },
+      "t_bytes32": {
+        "encoding": "inplace",
+        "label": "bytes32",
+        "numberOfBytes": "32"
+      },
+      "t_contract(IMyToken)8376": {
+        "encoding": "inplace",
+        "label": "contract IMyToken",
+        "numberOfBytes": "20"
+      },
+      "t_mapping(t_address,t_uint256)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => uint256)",
+        "numberOfBytes": "32",
+        "value": "t_uint256"
+      },
+      "t_struct(Proposal)8381_storage": {
+        "encoding": "inplace",
+        "label": "struct TokenizedBallot.Proposal",
+        "members": [
+          {
+            "astId": 8378,
+            "contract": "contracts/TokenizedBallot.sol:TokenizedBallot",
+            "label": "name",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_bytes32"
+          },
+          {
+            "astId": 8380,
+            "contract": "contracts/TokenizedBallot.sol:TokenizedBallot",
+            "label": "voteCount",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_uint256"
+          }
+        ],
+        "numberOfBytes": "64"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}

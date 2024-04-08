@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import deployedContracts from "../contracts/deployedContracts";
 import type { NextPage } from "next";
-import { useAccount, useBalance, useContractRead, useNetwork, useSignMessage } from "wagmi";
+import { useAccount, useBalance, useContractRead, useContractWrite, useNetwork, useSignMessage } from "wagmi";
 
 const Home: NextPage = () => {
   return (
@@ -44,6 +45,7 @@ function WalletInfo() {
       <div>
         <p>Your account address is {address}</p>
         <p>Connected to the network {chain?.name}</p>
+        <Delegate></Delegate>
         <WalletAction></WalletAction>
         <WalletBalance address={address as `0x${string}`}></WalletBalance>
         <TokenInfo address={address as `0x${string}`}></TokenInfo>
@@ -100,6 +102,50 @@ function WalletAction() {
         </button>
         {isSuccess && <div>Signature: {data}</div>}
         {isError && <div>Error signing message</div>}
+      </div>
+    </div>
+  );
+}
+
+function Delegate() {
+  const [delegateAddress, setDelegateAddress] = useState("");
+
+  const { data, isError, isLoading, isSuccess, write } = useContractWrite({
+    address: deployedContracts[11155111].MyToken.address,
+    abi: deployedContracts[11155111].MyToken.abi,
+    functionName: "delegate",
+    chainId: 11155111,
+  });
+  return (
+    <div className="card w-96 bg-primary text-primary-content mt-4">
+      <div className="card-body">
+        <h2 className="card-title">Delegate votes</h2>
+        <div className="form-control w-full max-w-xs my-4">
+          <label className="label">
+            <span className="label-text">Enter the wallet address you want to delegate your votest to:</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Type here"
+            className="input input-bordered w-full max-w-xs"
+            value={delegateAddress}
+            onChange={e => setDelegateAddress(e.target.value)}
+          />
+        </div>
+        <button
+          className="btn btn-active btn-neutral"
+          disabled={isLoading}
+          onClick={() =>
+            write({
+              args: [delegateAddress],
+            })
+          }
+        >
+          Delegate
+        </button>
+        {isSuccess && <div>Transaction hash: {data?.hash}</div>}
+
+        {isError && <div>Error delegating your vote</div>}
       </div>
     </div>
   );
